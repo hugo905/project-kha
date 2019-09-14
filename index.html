@@ -19,6 +19,9 @@
   <!--font-family: 'Rubik Mono One', sans-serif; -->
   <link href="https://fonts.googleapis.com/css?family=Yantramanav:100&display=swap" rel="stylesheet">
   <!-- font-family: 'Yantramanav', sans-serif; -->
+
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </head>
 
 <body>
@@ -59,7 +62,7 @@
         <input type="text" class="form-control" id="restaurantSuggestion" placeholder="Restaurant Suggestion">
       </div>
       <div class="col col-md-2">
-        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        <button type="submit" class="btn btn-primary btn-block" id="suggestSubmit">Submit</button>
 
       </div>
       <div class="col-md-1"></div>
@@ -88,12 +91,10 @@
 </body>
 
 
-<!--FIREBASE-->
-<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
 
 <!-- JAVASCRIPT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="assets/javascript/app.js"></script>
+<script type="text/javascript" src="./assets/javascript/app.js"></script>
 
 
 </html>
