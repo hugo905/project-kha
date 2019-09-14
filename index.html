@@ -2,34 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!-- BOOTSTRAP -->
-    <link rel="stylesheet"
+  <title>Lunchmocracy</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-    <!-- jQUERY -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
+  <!-- jQUERY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+  <!--font-family: 'Rubik Mono One', sans-serif; -->
+  <link href="https://fonts.googleapis.com/css?family=Yantramanav:100&display=swap" rel="stylesheet">
+  <!-- font-family: 'Yantramanav', sans-serif; -->
 </head>
 
 <body>
-    <!-- CARD 1-->
-    <div class="header">Meet and chat with like-minded people over lunch.</div>
-    <div class="card">
-        <div class="card-body">
-          <a href="#" class="btn btn-primary" id="x">x</a>
-          <a href="#" class="btn btn-primary" id="y">y</a>
-          <a href="#" class="btn btn-primary" id="login">Login</a>
+  <!-- NAV BAR -->
+  <div class="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="#"><h1>Lunchmocracy</h1></a>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <span class="navbar-text">
+            Vote for Lunch
+          </span>
         </div>
+    </nav>
+  </div>
+  <!-- INPUT FORM -->
+  <form>
+      <div class="form-row">
+        <div class="col-md-2"></div>
+        <div class="col col-md-4">
+          <input type="text" class="form-control" id="employeeName" placeholder="Employee Name">
+        </div>
+        <div class="col col-md-4">
+          <input type="text" class="form-control" id="restaurantSuggestion" placeholder="Restaurant Suggestion">
+        </div>
+        <div class="col-md-2"></div>
       </div>
+    </form>
+    <!-- CARD 1
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
 
 </body>
-<!-- JAVASCRIPT -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="assets/javascript/app.js"></script>
+  <!-- JAVASCRIPT -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 
 </html>
