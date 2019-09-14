@@ -2,14 +2,15 @@ body {
     font-family: 'Yantramanav', sans-serif;
     background-image: url("../images/picture3.jpg");
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center top;
     background-size: 100%;
 }
 
 .navbar-text {
     font-weight: bold;
     color: #273854;
-    float: right;
+    padding-right: 20px;
+    text-align: center;
 }
 
 h1 {
