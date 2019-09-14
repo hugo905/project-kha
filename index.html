@@ -24,28 +24,50 @@
 <body>
   <!-- NAV BAR -->
   <div class="navigation">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#"><h1>Lunchmocracy</h1></a>
-        <div class="collapse navbar-collapse" id="navbarText">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand" href="#"><h1>Lunchmocracy</h1></a>
           <span class="navbar-text">
             Vote for Lunch
           </span>
-        </div>
-    </nav>
+      </nav>
+    </div>
   </div>
-  <!-- INPUT FORM -->
+
+  <!-- SUGGEST OR VOTE -->
+  <div class="row marginPlz show">
+    <div class="col col-md-2"></div>
+    <div class="col col-md-4">
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="suggest">Suggest a Place!</button>
+    </div>
+    <div class="col col-md-4">
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="voteNow">Vote Now!</button>
+    </div>
+    <div class="col col-md-2"></div>
+  </div>
+  
+  <!-- SUGGESTION FORM -->
   <form>
-      <div class="form-row">
-        <div class="col-md-2"></div>
-        <div class="col col-md-4">
-          <input type="text" class="form-control" id="employeeName" placeholder="Employee Name">
-        </div>
-        <div class="col col-md-4">
-          <input type="text" class="form-control" id="restaurantSuggestion" placeholder="Restaurant Suggestion">
-        </div>
-        <div class="col-md-2"></div>
+    <div class="form-row show 2">
+      <div class="col-md-1"></div>
+      <div class="col col-md-3">
+        <input type="text" class="form-control" id="employeeName" placeholder="Employee Name">
       </div>
-    </form>
+      <div class="col col-md-5">
+        <input type="text" class="form-control" id="restaurantSuggestion" placeholder="Restaurant Suggestion">
+      </div>
+      <div class="col col-md-2">
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </form>
+
+
+  <div class="suggestionResults">
+
+  </div>
+
     <!-- CARD 1
 <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
