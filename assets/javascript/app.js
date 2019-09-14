@@ -29,10 +29,11 @@
    employeeName = $("#employeeName").val().trim();    
 
     //saving options up to database 
-      database.ref("/option").push({
+      database.ref("/option/" + eatery).set({
         eatery: eatery,
         suggester: employeeName,
-        voterName: employeeName
+        voterName: employeeName,
+        votes: 1
       });
 
   });
@@ -41,7 +42,6 @@
   database.ref("/option").on("child_added", function(snapshot){
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
-    optionID = snapshot.val().optionNo;
     //votes??
 
     var newCard = $("<div>");
@@ -50,14 +50,20 @@
     var voteCount = $("<p>Votes: " + "votes??" + "</p>");
 
     var voteButton = $("<button type='button' class='btn btn-primary btn-lg btn-block' id='suggest'>Vote Now!</button>")
+    $(voteButton).attr("OptionID", displayEatery);
     
     $(newCard).append(eateryH, suggesterP, voteCount, voteButton);
-    $(newCard).attr("OptionID", optionID);
+    
     $(newCard).addClass("card");
 
     $(".suggestionResults").prepend(newCard);
 
   });
+
+
+
+
+
 
 
 
