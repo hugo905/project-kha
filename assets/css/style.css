@@ -1,0 +1,42 @@
+body {
+    font-family: 'Yantramanav', sans-serif;
+    background-image: url("../images/picture3.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100%;
+}
+
+.navbar-text {
+    font-weight: bold;
+    color: #273854;
+    padding-right: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 44px;
+    padding-left: 20px;
+    color: #273854;
+}
+
+.navigation { 
+    background: transparent;
+}
+
+.employeeName, 
+.restaurantSuggestion {
+    width: 450px;
+    background: rgba(0,0,0,.8);
+}
+
+.btn {
+    font-family: 'Rubik Mono One', sans-serif;
+    background: #273854;
+    width 100%;
+}
+
+form,
+.marginPlz {
+    padding: 150px 0px 150px 0px;
+}

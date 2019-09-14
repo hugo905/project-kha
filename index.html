@@ -1,12 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <title>Lunchmocracy</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <!-- jQUERY -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+  <!--font-family: 'Rubik Mono One', sans-serif; -->
+  <link href="https://fonts.googleapis.com/css?family=Yantramanav:100&display=swap" rel="stylesheet">
+  <!-- font-family: 'Yantramanav', sans-serif; -->
+
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
 </head>
+
 <body>
-    
+
+  <!-- NAV BAR -->
+  <div class="container">
+  <div class="navigation">
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand" href="#"><h1>Lunchmocracy</h1></a>
+          <span class="navbar-text">
+            Vote for Lunch
+          </span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- SUGGEST OR VOTE -->
+  <div class="row marginPlz show">
+    <div class="col col-md-2"></div>
+    <div class="col col-md-4">
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="suggest">Suggest a Place!</button>
+    </div>
+    <div class="col col-md-4">
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="voteNow">Vote Now!</button>
+    </div>
+    <div class="col col-md-2"></div>
+  </div>
+  
+  <!-- SUGGESTION FORM -->
+  <form>
+    <div class="form-row show 2">
+      <div class="col-md-1"></div>
+      <div class="col col-md-3">
+        <input type="text" class="form-control" id="employeeName" placeholder="Employee Name">
+      </div>
+      <div class="col col-md-5">
+        <input type="text" class="form-control" id="restaurantSuggestion" placeholder="Restaurant Suggestion">
+      </div>
+      <div class="col col-md-2">
+        <button type="submit" class="btn btn-primary btn-block" id="suggestSubmit">Submit</button>
+
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </form>
+
+  <!-- VOTEAREA SUGGESTION RESULTS -->
+  <div class="suggestionResults">
+      <div class="col col-md-4"></div>
+      <div class="col col-md-4">
+          <button type="button" class="btn btn-primary btn-lg btn-block" id="suggest">Vote Now!</button>
+      </div>
+      <div class="col col-md-4"></div>
+  </div>
+</div>
+    <!-- CARD 1
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div> -->
+
 </body>
+
+
+
+<!-- JAVASCRIPT -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="./assets/javascript/app.js"></script>
+
+
 </html>
