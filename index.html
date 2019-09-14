@@ -27,23 +27,22 @@
 <body>
 
   <!-- NAV BAR -->
-  <div class="container">
-  <div class="navigation">
+  <div class="container-fluid">
     <div class="row">
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-light col-md-12">
           <a class="navbar-brand" href="#"><h1>Lunchmocracy</h1></a>
+          <div class="navbar-nav mr-auto"></div>
           <span class="navbar-text">
             Vote for Lunch
           </span>
       </nav>
-    </div>
   </div>
 
   <!-- SUGGEST OR VOTE -->
-  <div class="row marginPlz show">
+  <div class="row marginPlz">
     <div class="col col-md-2"></div>
     <div class="col col-md-4">
-      <button type="button" class="btn btn-primary btn-lg btn-block" id="suggest">Suggest a Place!</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block" id="suggest">Suggest!</button>
     </div>
     <div class="col col-md-4">
       <button type="button" class="btn btn-primary btn-lg btn-block" id="voteNow">Vote Now!</button>
@@ -53,7 +52,7 @@
   
   <!-- SUGGESTION FORM -->
   <form>
-    <div class="form-row show 2">
+    <div class="form-row">
       <div class="col-md-1"></div>
       <div class="col col-md-3">
         <input type="text" class="form-control" id="employeeName" placeholder="Employee Name">
@@ -69,7 +68,7 @@
     </div>
   </form>
 
-  <!-- VOTEAREA SUGGESTION RESULTS -->
+  <!-- VOTEAREA/SUGGESTION RESULTS -->
   <div class="suggestionResults">
       <div class="col col-md-4"></div>
       <div class="col col-md-4">
