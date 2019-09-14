@@ -22,11 +22,18 @@
   var displayEatery;
   var displayEmployee;
 
-  //on submit click
-  $("#suggestSubmit").on("click", function(){
+  var address;
+  var phone;
+  var restaurantName;
+  var priceLevel;
+  var rating;
 
+  //on submit click
+  $("#suggestSubmit").on("click", function(e){
+    e.preventDefault();
    eatery = $("#restaurantSuggestion").val().trim();
    employeeName = $("#employeeName").val().trim();    
+   runAPI(eatery);
 
     //saving options up to database 
       database.ref("/option/" + eatery).set({
