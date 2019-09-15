@@ -1,5 +1,19 @@
 ++++++ INDEX ++++++ 
 
-.show = suggest or vote
-.show2 = suggestion form
-.show3 = board showing current forms
+h1 = header
+.navbar-text = small text on top
+
+
+++++++  .suggestVote  ++++++ 
+^^ section with "SUGGEST" and "VOTE NOW!" Buttons
+
+.suggest = "SUGGEST!" button on first page
+.voteNow = "VOTE NOW! button on first page 
+
+++++++  .suggestionForm  ++++++ 
+
+
+
+
+
+

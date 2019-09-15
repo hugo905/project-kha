@@ -25,13 +25,12 @@ h1 {
     background: transparent;
 }
 
-.employeeName, 
-.restaurantSuggestion {
-    width: 450px;
-    background: rgba(0,0,0,.8);
+#employeeName, 
+#restaurantSuggestion {
+    background: rgba(255, 255, 255, 0.8);
 }
 
-.btn {
+.btn-lg {
     font-family: 'Rubik Mono One', sans-serif;
     background: #273854;
     width 100%;
@@ -40,4 +39,8 @@ h1 {
 form,
 .marginPlz {
     margin-top: 10%;
+}
+
+.hide {
+    display: none;
 }
