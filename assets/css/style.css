@@ -25,6 +25,7 @@ h1 {
     background: transparent;
 }
 
+.card,
 #employeeName, 
 #restaurantSuggestion {
     background: rgba(255, 255, 255, 0.8);

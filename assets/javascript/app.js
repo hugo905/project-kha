@@ -55,7 +55,7 @@
     $(newCard).attr("OptionID", optionID);
     $(newCard).addClass("card");
 
-    $(".suggestionResults").prepend(newCard);
+    $(".card-columns").prepend(newCard);
 
   });
 
