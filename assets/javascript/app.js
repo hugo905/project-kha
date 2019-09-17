@@ -90,9 +90,11 @@ $("body").on("click", ".voteButton", function(){
 
     thisVoter = $(".voterName" + noSpaces).val().trim();
       
-      database.ref("/option/" + thisVote + "/voterName/" + thisVoter).set({
-        votes: 1
-      });
+      database.ref("/option/" + thisVote + "/voters/").push({
+        name: thisVoter
+      })
+        
+      
       
   
 
@@ -103,10 +105,11 @@ $("body").on("click", ".voteButton", function(){
     });
 
   //updates the visible vote count
-  database.ref("/option/" + thisVote + "/votes").on("value", function(snapshot){
-    var voteCount = snapshot.val();
-    
-    $(".voteCounter" + noSpaces).text("Votes: " + voteCount);
+  database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
+    var voters = snapshot.val();
+    console.log(voters)
+
+    $(".voteCounter" + noSpaces).text("Votes: " + Object.keys(voters).length);
     
   });
 
@@ -114,13 +117,4 @@ $("body").on("click", ".voteButton", function(){
   $(".voterName" + noSpaces).val("");
 
 });
-
-
-
-
-
-
-
-
-
 
