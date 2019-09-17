@@ -26,7 +26,7 @@ function runAPI (eatery) {
 
 
             
-            database.ref("/option").push({
+            database.ref("/option/" + eatery).set({
                 eatery: eatery,
                 suggester: employeeName,
                 // optionNumber: 
@@ -43,8 +43,9 @@ function runAPI (eatery) {
 
               });
 
-
-
+              database.ref("/option/" + eatery + "/voters/").push({
+                name: employeeName
+              });
 
 
         });

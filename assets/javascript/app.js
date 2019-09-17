@@ -30,6 +30,10 @@
   var rating;
   var image;
 
+  var voters;
+  var thisVote;
+  var noSpaces;
+
   //on submit click
   $("#suggestSubmit").on("click", function(e){
     e.preventDefault();
@@ -37,18 +41,6 @@
     employeeName = $("#employeeName").val().trim();    
     runAPI(eatery);
 
-    //saving options up to database 
-
-      database.ref("/option/" + eatery).set({
-        eatery: eatery,
-        suggester: employeeName,
-        votes: 1
-      });
-
-
-      database.ref("/option/" + eatery + "/voterName/" + employeeName).set({
-        votes: 1
-      });
 
       $("#restaurantSuggestion").val("");
       $("#employeeName").val("");
@@ -67,15 +59,17 @@
     displayPriceLevel = snapshot.val().priceLevel;
     displayRating = snapshot.val().rating;
 
-
-
-    var firstVote = snapshot.val().votes;
-
+    database.ref("/option/" + displayEatery + "/voters").on("value", function(snapshot){
+      voters = snapshot.val();
+  
+      voters = Object.keys(voters).length;
+      
+    });
 
     var newCard = $("<div>");
     var eateryH = $("<h5>" + displayEatery + "</h5>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
-    var voteCount = $("<p>Votes: " + firstVote + "</p>");
+    var voteCount = $("<p>Votes: " + voters + "</p>");
 
     var noSpaces = displayEatery.replace(/\s/g, "");
     noSpaces = noSpaces.replace("'","");
@@ -99,8 +93,8 @@
   //voting function
 $("body").on("click", ".voteButton", function(){
   
-    var thisVote = $(this).attr("OptionID");
-    var noSpaces = thisVote.replace(/\s/g, '');
+    thisVote = $(this).attr("OptionID");
+    noSpaces = thisVote.replace(/\s/g, '');
     noSpaces = noSpaces.replace("'","");
 
     thisVoter = $(".voterName" + noSpaces).val().trim();
@@ -108,16 +102,8 @@ $("body").on("click", ".voteButton", function(){
       database.ref("/option/" + thisVote + "/voters/").push({
         name: thisVoter
       })
-        
-      
-      
-  
 
-    //adds to vote count on the database
-    var thisDB = database.ref("/option/" + thisVote + "/votes")
-    thisDB.transaction(function(votes){
-      return votes +1;
-    });
+
 
   //updates the visible vote count
   database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
@@ -128,8 +114,8 @@ $("body").on("click", ".voteButton", function(){
     
   });
 
-
-  $(".voterName" + noSpaces).val("");
+$(".voterName" + noSpaces).val("");
 
 });
+  
 
