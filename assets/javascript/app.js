@@ -49,14 +49,19 @@
   database.ref("/option").on("child_added", function(snapshot){
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
-    //votes??
+    var firstVote = snapshot.val().votes;
 
     var newCard = $("<div>");
     var eateryH = $("<h5>" + displayEatery + "</h5>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
-    var voteCount = $("<p>Votes: " + "votes??" + "</p>");
+    var voteCount = $("<p>Votes: " + firstVote + "</p>");
 
-    var voteButton = $("<button type='button voteButton' class='btn btn-primary btn-lg btn-block' id='suggest'>Vote Now!</button>")
+    var noSpaces = displayEatery.replace(/\s/g, '');
+    $(voteCount).addClass("voteCounter" + noSpaces)
+
+    var voteButton = $("<button type='button ' class='btn btn-primary btn-lg btn-block voteButton' id='suggest'>Vote Now!</button>")
+    
+    
     $(voteButton).attr("OptionID", displayEatery);
     
     $(newCard).append(eateryH, suggesterP, voteCount, voteButton);
@@ -67,13 +72,28 @@
 
   });
 
+  //voting function
 $("body").on("click", ".voteButton", function(){
-  var thisVote = $(this).attr("OptionID");
+  
+    var thisVote = $(this).attr("OptionID");
 
-  database.ref("/option/" + thisVote).on("value", function(snapshot){
+    //adds to vote count on the database
+    var thisDB = database.ref("/option/" + thisVote + "/votes")
+    thisDB.transaction(function(votes){
+      return votes +1;
+    });
+
+  //updates the visible vote count
+  database.ref("/option/" + thisVote + "/votes").on("value", function(snapshot){
+    var voteCount = snapshot.val()
+    
+    var noSpaces = thisVote.replace(/\s/g, '');
+    $(".voteCounter" + noSpaces).text("Votes: " + voteCount);
     
   })
-}
+
+
+});
 
 
 
