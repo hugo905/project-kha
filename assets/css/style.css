@@ -52,6 +52,13 @@ h1 {
     letter-spacing: 2px;
 }
 
+#employeeName, 
+#restaurantSuggestion,
+#suggestSubmit {
+    margin-bottom: 30px;
+}
+
+
 #suggest2,
 #suggestSubmit {
     width: 100%
