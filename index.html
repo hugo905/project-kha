@@ -30,26 +30,21 @@
 
   <!-- NAV BAR -->
   <div class="container-fluid">
-<h1>Lunchmocracy</h1>
-
-          <div class="navText">
-            YOUR RIGHT TO VOTE FOR LUNCH!
-          </div>
+    <div class="text-center">
+      <h1>Lunchmocracy</h1>
+        <div class="navText d-none d-sm-block">
+          YOUR RIGHT TO VOTE FOR LUNCH!
+        </div>
       </nav>
-  </div>
+    </div>
 
   <!-- SUGGEST OR VOTE -->
   <div class="suggestVote">
     <div class="row marginPlz">
-      <div class="col col-md-2"></div>
-      <div class="col col-md-4 col-sm-12">
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="suggest">SUGGEST!</button>
+      <div class="col-12 text-center">
+        <button type="button" class="btn btn-primary btn-lg mr-md-5" id="suggest">SUGGEST!</button>
+        <button type="button" class="btn btn-primary btn-lg ml-md-5" id="voteNow">VOTE NOW!</button>
       </div>
-
-      <div class="col col-md-4 col-sm-12">
-        <button type="button" class="btn btn-primary btn-lg btn-block" id="voteNow">VOTE NOW!</button>
-      </div>
-      <div class="col col-md-2"></div>
     </div>
   </div>
   
@@ -57,17 +52,16 @@
   <div class="suggestionForm hide">
     <form>
       <div class="form-row">
-        <div class="col-md-1"></div>
-        <div class="col col-md-3 col-sm-12">
+        <div class="col-12 col-md-3 offset-md-1">
           <input type="text" class="form-control form-control-lg" id="employeeName" placeholder="Employee Name">
         </div>
-        <div class="col col-md-5 col-sm-12">
+        <div class="col-12 col-md-5">
           <input type="text" class="form-control form-control-lg" id="restaurantSuggestion" placeholder="Restaurant Suggestion">
         </div>
-        <div class="col col-md-2 col-sm-12">
+        <div class="col-12 col-md-2">
           <button type="submit" class="btn-lg btn-primary btn-block" id="suggestSubmit">SUBMIT</button>
         </div>
-        <div class="col-md-1"></div>
+        <div class="offset-md-1"></div>
       </div>
     </form>
   </div>
@@ -106,6 +100,7 @@
 <!-- JAVASCRIPT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="./assets/javascript/app.js"></script>
+<script type="text/javascript" src="./assets/javascript/app2.js"></script>
 <script type="text/javascript" src="./assets/javascript/frontpage.js"></script>
 
 </html>
