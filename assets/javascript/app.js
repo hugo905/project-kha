@@ -49,7 +49,7 @@
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
     var voteCount = $("<p>Votes: " + "votes??" + "</p>");
 
-    var voteButton = $("<button type='button' class='btn btn-primary btn-lg btn-block' id='suggest'>Vote Now!</button>")
+    var voteButton = $("<button type='button voteButton' class='btn btn-primary btn-lg btn-block' id='suggest'>Vote Now!</button>")
     $(voteButton).attr("OptionID", displayEatery);
     
     $(newCard).append(eateryH, suggesterP, voteCount, voteButton);
@@ -60,6 +60,13 @@
 
   });
 
+$("body").on("click", ".voteButton", function(){
+  var thisVote = $(this).attr("OptionID");
+
+  database.ref("/option/" + thisVote).on("value", function(snapshot){
+    
+  })
+}
 
 
 
