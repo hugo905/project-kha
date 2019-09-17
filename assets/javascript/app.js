@@ -31,9 +31,9 @@
   //on submit click
   $("#suggestSubmit").on("click", function(e){
     e.preventDefault();
-   eatery = $("#restaurantSuggestion").val().trim();
-   employeeName = $("#employeeName").val().trim();    
-   runAPI(eatery);
+    eatery = $("#restaurantSuggestion").val().trim();
+    employeeName = $("#employeeName").val().trim();    
+    runAPI(eatery);
 
     //saving options up to database 
       database.ref("/option/" + eatery).set({
@@ -42,6 +42,13 @@
         voterName: employeeName,
         votes: 1
       });
+
+      database.ref("/option/" + eatery + "/voterName").set({
+        voterName: employeeName
+      });
+
+      $("#restaurantSuggestion").val("");
+      $("#employeeName").val("");
 
   });
 
@@ -61,10 +68,13 @@
     $(voteCount).addClass("voteCounter" + noSpaces)
 
     var voteButton = $("<button type='button ' class='btn btn-primary btn-lg btn-block voteButton' id='suggest'>Vote Now!</button>")
+    var voterName = $("<input type='text' class='form-control voterName' id='employeeName' placeholder='Employee Name'>");
+
+    $(voterName).addClass("voterName" + noSpaces)
     
     $(voteButton).attr("OptionID", displayEatery);
     
-    $(newCard).append(eateryH, suggesterP, voteCount, voteButton);
+    $(newCard).append(eateryH, suggesterP, voteCount, voterName, voteButton);
     
     $(newCard).addClass("card");
 
@@ -76,6 +86,16 @@
 $("body").on("click", ".voteButton", function(){
   
     var thisVote = $(this).attr("OptionID");
+    var noSpaces = thisVote.replace(/\s/g, '');
+    noSpaces = noSpaces.replace("'","");
+
+    thisVoter = $(".voterName" + noSpaces).val().trim();
+      
+      database.ref("/option/" + thisVote + "/voterName").update({
+        voterName: thisVoter
+      });
+      
+  
 
     //adds to vote count on the database
     var thisDB = database.ref("/option/" + thisVote + "/votes")
@@ -85,13 +105,13 @@ $("body").on("click", ".voteButton", function(){
 
   //updates the visible vote count
   database.ref("/option/" + thisVote + "/votes").on("value", function(snapshot){
-    var voteCount = snapshot.val()
+    var voteCount = snapshot.val();
     
-    var noSpaces = thisVote.replace(/\s/g, '');
-    noSpaces = noSpaces.replace("'","");
     $(".voteCounter" + noSpaces).text("Votes: " + voteCount);
     
-  })
+  });
+
+
 
 
 });
