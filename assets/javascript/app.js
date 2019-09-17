@@ -92,7 +92,7 @@
     
     $(newCard).addClass("card");
 
-    $(".suggestionResults").prepend(newCard);
+    $(".card-columns").prepend(newCard);
 
   });
 
