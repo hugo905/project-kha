@@ -22,6 +22,7 @@
   var displayEatery;
   var displayEmployee;
 
+  var placeId;
   var address;
   var phone;
   var restaurantName;
@@ -36,11 +37,6 @@
    runAPI(eatery);
 
     //saving options up to database 
-      database.ref("/option").push({
-        eatery: eatery,
-        suggester: employeeName,
-        voterName: employeeName
-      });
 
   });
 
@@ -49,7 +45,13 @@
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
     optionID = snapshot.val().optionNo;
-    //votes??
+    displayAddress = snapshot.val().placeId;
+    displayPhone = snapshot.val().phone;
+    displayRestaurant = snapshot.val().restaurantName;
+    displayPriceLevel = snapshot.val().priceLevel;
+    displayRating = snapshot.val().rating;
+
+
 
     var newCard = $("<div>");
     var eateryH = $("<h5>" + displayEatery + "</h5>");
