@@ -1,10 +1,7 @@
 function runAPI (eatery) {
     
-    console.log(eatery);
    
     var kw = eatery;
-
-
     var queryURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + kw + "&inputtype=textquery&place_id&fields=photos,formatted_address,geometry,icon,name,permanently_closed,price_level,user_ratings_total,opening_hours,rating,place_id&locationbias=circle:2000@-33.888584,151.1873473&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM"
 
     $.ajax({
@@ -24,11 +21,8 @@ function runAPI (eatery) {
             cache: false,
         }).then(function (detailListResult) {
 
-            console.log(detailListResult);
-            console.log(detailListResult.result.place_id);
-
             var firstImageReference = detailListResult.result.photos[0].photo_reference;
-            var firstImageURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
+            var firstImageURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
 
 
             
@@ -44,7 +38,8 @@ function runAPI (eatery) {
                 phone: detailListResult.result.formatted_phone_number,
                 restaurantName: detailListResult.result.name,
                 priceLevel: detailListResult.result.price_level,
-                rating: detailListResult.result.rating
+                rating: detailListResult.result.rating,
+                image: firstImageURL
 
               });
 

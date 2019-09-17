@@ -28,6 +28,7 @@
   var restaurantName;
   var priceLevel;
   var rating;
+  var image;
 
   //on submit click
   $("#suggestSubmit").on("click", function(e){
