@@ -1,5 +1,20 @@
+@font-face {
+    font-family: "governor";
+    src: url('../images/governor.ttf');
+    }
+
+@font-face {
+    font-family: "moon";
+    src: url('../images/moon.otf');
+}
+
+@font-face {
+    font-family: "quick";
+    src: url('../images/Quick.otf');
+}
+
 body {
-    font-family: 'Yantramanav', sans-serif;
+    font-family: "moon";
     background-image: url("../images/picture3.jpg");
     background-repeat: no-repeat;
     background-position: center top;
@@ -7,18 +22,21 @@ body {
     background-color: #6FD6FF;
 }
 
-.navbar-text {
+.navText {
     color: #FFFFFF;
     font-weight: bold;
+    font-family: "quick";
     padding-right: 20px;
     text-align: center;
+    margin: 0 auto;
 }
 
 h1 {
-    font-family: 'Rubik Mono One', sans-serif;
+    font-family: "governor";
     font-size: 44px;
-    padding-left: 20px;
+    letter-spacing: 2px;
     color: #FFFFFF;
+    margin: 0 auto;
 }
 
 .navbar { 
@@ -35,6 +53,21 @@ h1 {
     font-family: 'Rubik Mono One', sans-serif;
     background: #273854;
     width 100%;
+}
+
+#suggest,
+#voteNow {
+    background: #FFFFFF;
+    color: #6FD6FF;
+    letter-spacing: 2px;
+}
+
+#suggest {
+    margin-left: 20px;
+}
+
+#voteNow {
+    margin-right: 20px;
 }
 
 form,
