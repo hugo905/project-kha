@@ -1,5 +1,3 @@
-
-
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyAO_Gz79glGQcOnEg5cs4vi4sN3VQ5dYvM",
@@ -41,10 +39,18 @@
     employeeName = $("#employeeName").val().trim();    
     runAPI(eatery);
 
+    database.ref("/option/" + eatery).set({
+      eatery: eatery,
+      suggester: employeeName
+    });
+
+    database.ref("/option/" + eatery + "/voters/").push({
+      name: employeeName
+    });
 
       $("#restaurantSuggestion").val("");
       $("#employeeName").val("");
-
+    console.log(eatery)
   });
 
   //display the options 
@@ -61,8 +67,6 @@
 
     database.ref("/option/" + displayEatery + "/voters").on("value", function(snapshot){
       voters = snapshot.val();
-  
-      voters = Object.keys(voters).length;
       
     });
 
@@ -108,7 +112,6 @@ $("body").on("click", ".voteButton", function(){
   //updates the visible vote count
   database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
     var voters = snapshot.val();
-    console.log(voters)
 
     $(".voteCounter" + noSpaces).text("Votes: " + Object.keys(voters).length);
     

@@ -24,29 +24,18 @@ function runAPI (eatery) {
             var firstImageReference = detailListResult.result.photos[0].photo_reference;
             var firstImageURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
 
+            console.log("database called" + eatery)
 
-            
-            database.ref("/option/" + eatery).set({
-                eatery: eatery,
-                suggester: employeeName,
-                // optionNumber: 
-                // displayEatery:
-                // displayEmployee: 
+                database.ref("/option/" + eatery).update({
+                    placeId: detailListResult.result.place_id,
+                    address: detailListResult.result.formatted_address,
+                    phone: detailListResult.result.formatted_phone_number,
+                    restaurantName: detailListResult.result.name,
+                    priceLevel: detailListResult.result.price_level,
+                    rating: detailListResult.result.rating,
+                    image: firstImageURL
 
-                placeId: detailListResult.result.place_id,
-                address: detailListResult.result.formatted_address,
-                phone: detailListResult.result.formatted_phone_number,
-                restaurantName: detailListResult.result.name,
-                priceLevel: detailListResult.result.price_level,
-                rating: detailListResult.result.rating,
-                image: firstImageURL
-
-              });
-
-              database.ref("/option/" + eatery + "/voters/").push({
-                name: employeeName
-              });
-
+                });
 
         });
     });
