@@ -39,12 +39,11 @@
       database.ref("/option/" + eatery).set({
         eatery: eatery,
         suggester: employeeName,
-        voterName: employeeName,
         votes: 1
       });
 
-      database.ref("/option/" + eatery + "/voterName").set({
-        voterName: employeeName
+      database.ref("/option/" + eatery + "/voterName/" + employeeName).set({
+        votes: 1
       });
 
       $("#restaurantSuggestion").val("");
@@ -91,8 +90,8 @@ $("body").on("click", ".voteButton", function(){
 
     thisVoter = $(".voterName" + noSpaces).val().trim();
       
-      database.ref("/option/" + thisVote + "/voterName").update({
-        voterName: thisVoter
+      database.ref("/option/" + thisVote + "/voterName/" + thisVoter).set({
+        votes: 1
       });
       
   
@@ -112,7 +111,7 @@ $("body").on("click", ".voteButton", function(){
   });
 
 
-
+  $(".voterName" + noSpaces).val("");
 
 });
 
