@@ -22,11 +22,13 @@
   var displayEatery;
   var displayEmployee;
 
+  var placeId;
   var address;
   var phone;
   var restaurantName;
   var priceLevel;
   var rating;
+  var image;
 
   //on submit click
   $("#suggestSubmit").on("click", function(e){
@@ -36,11 +38,13 @@
     runAPI(eatery);
 
     //saving options up to database 
+
       database.ref("/option/" + eatery).set({
         eatery: eatery,
         suggester: employeeName,
         votes: 1
       });
+
 
       database.ref("/option/" + eatery + "/voterName/" + employeeName).set({
         votes: 1
@@ -55,7 +59,18 @@
   database.ref("/option").on("child_added", function(snapshot){
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
+
+    optionID = snapshot.val().optionNo;
+    displayAddress = snapshot.val().placeId;
+    displayPhone = snapshot.val().phone;
+    displayRestaurant = snapshot.val().restaurantName;
+    displayPriceLevel = snapshot.val().priceLevel;
+    displayRating = snapshot.val().rating;
+
+
+
     var firstVote = snapshot.val().votes;
+
 
     var newCard = $("<div>");
     var eateryH = $("<h5>" + displayEatery + "</h5>");
