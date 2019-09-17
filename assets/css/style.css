@@ -1,42 +1,108 @@
+@font-face {
+    font-family: "governor";
+    src: url('../images/governor.ttf');
+    }
+
+@font-face {
+    font-family: "moon";
+    src: url('../images/moon.otf');
+}
+
+@font-face {
+    font-family: "quick";
+    src: url('../images/Quick.otf');
+}
+
 body {
-    font-family: 'Yantramanav', sans-serif;
+    font-family: "moon";
     background-image: url("../images/picture3.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100%;
+    background-color: #6FD6FF;
 }
 
-.navbar-text {
+.navText {
+    color: #FFFFFF;
     font-weight: bold;
-    color: #273854;
+    font-family: "quick";
     padding-right: 20px;
     text-align: center;
+    margin: 0 auto;
 }
 
 h1 {
-    font-family: 'Rubik Mono One', sans-serif;
+    font-family: "governor";
     font-size: 44px;
-    padding-left: 20px;
-    color: #273854;
+    letter-spacing: 2px;
+    color: #FFFFFF;
+    margin: 0 auto;
 }
 
-.navigation { 
+.navbar { 
     background: transparent;
 }
 
-.employeeName, 
-.restaurantSuggestion {
-    width: 450px;
-    background: rgba(0,0,0,.8);
+.card,
+#employeeName, 
+#restaurantSuggestion {
+    background: rgba(255, 255, 255, 0.8);
 }
 
-.btn {
+.btn-lg {
     font-family: 'Rubik Mono One', sans-serif;
     background: #273854;
     width 100%;
 }
 
+#suggest,
+#voteNow {
+    background: #FFFFFF;
+    color: #6FD6FF;
+    letter-spacing: 2px;
+}
+
+#suggest {
+    margin-left: 20px;
+}
+
+#voteNow {
+    margin-right: 20px;
+}
+
 form,
 .marginPlz {
-    padding: 150px 0px 150px 0px;
+    margin-top: 10%;
+}
+
+.hide {
+    display: none;
+}
+
+/* MOBILE  */
+@media (min-width: 480px) {
+      
+    /*.navbar-text {
+        display: none;
+    }*/
+    
+    h1 {
+        text-align: center;
+        margin: 30px;
+    }
+
+    #suggest,
+    #voteNow,
+    #employeeName,
+    #restaurantSuggestion,
+    #suggestSubmit {
+        margin-bottom: 30px;
+    }
+
+    body {
+    margin: 10px;
+
+}
+
+
 }
