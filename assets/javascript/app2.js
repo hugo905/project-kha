@@ -23,7 +23,7 @@ function runAPI (eatery) {
 
             var firstImageReference = detailListResult.result.photos[0].photo_reference;
             var firstImageURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
-
+            console.log(detailListResult);
 
             
             database.ref("/option").push({
