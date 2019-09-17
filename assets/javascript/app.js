@@ -56,11 +56,11 @@
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
     var voteCount = $("<p>Votes: " + firstVote + "</p>");
 
-    var noSpaces = displayEatery.replace(/\s/g, '');
+    var noSpaces = displayEatery.replace(/\s/g, "");
+    noSpaces = noSpaces.replace("'","");
     $(voteCount).addClass("voteCounter" + noSpaces)
 
     var voteButton = $("<button type='button ' class='btn btn-primary btn-lg btn-block voteButton' id='suggest'>Vote Now!</button>")
-    
     
     $(voteButton).attr("OptionID", displayEatery);
     
@@ -88,6 +88,7 @@ $("body").on("click", ".voteButton", function(){
     var voteCount = snapshot.val()
     
     var noSpaces = thisVote.replace(/\s/g, '');
+    noSpaces = noSpaces.replace("'","");
     $(".voteCounter" + noSpaces).text("Votes: " + voteCount);
     
   })
