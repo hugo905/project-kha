@@ -73,11 +73,7 @@
     var priceCard = $("<p>Price: " + displayPriceLevel + "</p>");
     var ratingCard = $("<p>Rating: " + displayRating + "</p>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
-    var voteCount = $("<p>Votes: " + voters + "</p>");
-
-    // var noSpaces = displayEatery.replace(/\s/g, "");
-    // noSpaces = noSpaces.replace("'","");
-    // $(voteCount).addClass("voteCounter");
+    var voteCount = $("<p id='voteDisplay'>Votes: " + voters + "</p>");
 
     $(voteCount).attr("data-id", fireBaseID);
 
@@ -101,7 +97,7 @@ $("body").on("click", ".voteButton", function(){
   
     var thisVote = $(this).attr("data-id");
     console.log(thisVote);
-    var noSpaces = thisVote.replace(/\s/g, '');
+    //var noSpaces = thisVote.replace(/\s/g, '');
     // noSpaces = noSpaces.replace("'","");
 
     var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim();
@@ -115,12 +111,12 @@ $("body").on("click", ".voteButton", function(){
   //updates the visible vote count
   database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
     var voters = snapshot.val();
-
-    $(".voteCounter" + noSpaces).text("Votes: " + Object.keys(voters).length);
+    $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + Object.keys(voters).length);
     
+    console.log(voters.length)
   });
 
-$(".voterName" + noSpaces).val("");
+$(".voterName[data-id=" + thisVote + "]").val("");
 
 });
 
