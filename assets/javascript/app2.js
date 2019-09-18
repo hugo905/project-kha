@@ -40,13 +40,7 @@ function runAPI (eatery) {
                 priceLevel: detailListResult.result.price_level,
                 rating: detailListResult.result.rating,
                 image: firstImageURL
-
               });
-
-
-
-
-
         });
     });
 
