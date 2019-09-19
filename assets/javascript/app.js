@@ -123,7 +123,12 @@ $("body").on("click", ".voteButton", function(){
       
         $.each(snapshot.val(), function (index, value){
         var nameList = value;
-        voterCheck = nameList.includes(thisVoter)
+        voterCheck = nameList.includes(thisVoter);
+        console.log(thisVoter, voterCheck)
+        
+        // if (voterCheck)
+        //   return false;
+
       })
     });
 
