@@ -8,10 +8,6 @@
     src: url('../images/moon.otf');
 }
 
-@font-face {
-    font-family: "quick";
-    src: url('../images/Quick.otf');
-}
 
 body {
     font-family: "moon";
@@ -19,28 +15,28 @@ body {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100%;
-    background-color: #6FD6FF;
+    background-color: #4DC5FE;
     color: #485975;
 }
 
 .navText {
     color: #FFFFFF;
     font-weight: bold;
-    font-family: "quick";
     padding-bottom: 30px;
-    padding-top: 10px;
+    padding-top: 2%;
     text-align: center;
     margin: 0 auto;
+    letter-spacing: 2px;
 }
 
 h1 {
     font-family: "governor";
     font-size: 54px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: #FFFFFF;
     text-align: center;
     padding-bottom: 10px;
-    padding-top: 20px;
+    padding-top: 2%;
     margin: 50px 0px 20px 0px;
     word-break: break-all;
 }
@@ -69,27 +65,40 @@ h1 {
 }
 
 ::placeholder { 
-    color: #6FD6FF; 
+    color: #4DC5FE; 
 } 
 
 .btn-lg {
-    width: 30%;
-    border: 0;
-    background: #FFFFFF;
-    color: #6FD6FF;
+    background: #4DC5FE;
+    color: #FFFFFF; 
+    border: 0;   
     letter-spacing: 2px;
 }
 
-#suggest,
-#voteNow {
+#suggest2 {
     background: #FFFFFF;
-    color: #6FD6FF;
+    color: #4DC5FE;
+}
+
+.suggestVote button {
+    background: #FFFFFF;
+    color: #4DC5FE;
     letter-spacing: 2px;
-    margin-top: -20px;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    width: 30%;
+    border: 0;
 }
 
 .suggestionForm {
     margin-top: -20px;
+}
+
+#suggestSubmit {
+    background: #FFFFFF;
+    color: #4DC5FE;
+    letter-spacing: 2px;
+    border: 0;
 }
 
 form,
@@ -98,7 +107,7 @@ form,
 }
 
 input.form-control::placeholder {
-    color: #6FD6FF;
+    color: #4DC5FE;
 }
 
 .hide {
@@ -189,7 +198,11 @@ img {
         width: 100%;
     }
 
-}
+    #suggest {
+        margin-top: 10px;
+    }
 
+    #voteNow {
 
+    }
 }
