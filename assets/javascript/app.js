@@ -35,18 +35,30 @@
 
   //on submit click
   $("#suggestSubmit").on("click", function(e){  
-    
-    var loading = "<div class='loader'></div>"
-    $(".container-fluid").prepend(loading);
-    $(".container-fluid").addClass('overlay');
-
     e.preventDefault();
+    
     eatery = $("#restaurantSuggestion").val().trim();
-    employeeName = $("#employeeName").val().trim();    
-    runAPI(eatery);
+    employeeName = $("#employeeName").val().trim(); 
 
-      $("#restaurantSuggestion").val("");
-      $("#employeeName").val("");
+    if (eatery == ""){
+      $("#restaurantSuggestion").addClass("is-invalid")
+    }else if (employeeName == ""){
+      $("#employeeName").addClass("is-invalid")
+    }else{
+    
+      var loading = "<div class='loader'></div>"
+      $(".container-fluid").prepend(loading);
+      $(".container-fluid").addClass('overlay');
+        
+      runAPI(eatery);
+
+        $("#restaurantSuggestion").val("");
+        $("#employeeName").val("");
+        $("#restaurantSuggestion").removeClass("is-invalid");
+        $("#employeeName").removeClass("is-invalid");
+
+        suggestClick();
+  }
   });
 
   //display the options 
