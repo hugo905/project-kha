@@ -23,23 +23,39 @@ function runAPI (eatery) {
 
             var firstImageReference = detailListResult.result.photos[0].photo_reference;
             var firstImageURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
+            var phNum = detailListResult.result.formatted_phone_number
+            var prLev = detailListResult.result.price_level
             console.log(detailListResult);
 
             firebaseID = database.ref("/option/").push().key;
+            
+            if(phNum == null){
+                phNum = "NA"
+                console.log("worked")
+            }else{
+                phNum = detailListResult.result.formatted_phone_number
+            }
 
+            if(prLev == null){
+                prLev = "NA"
+            }else{
+                prLev = detailListResult.result.price_level
+            }
+           
+            
             database.ref("/option/" + firebaseID).update({
                 eatery: eatery,
                 suggester: employeeName,
                 placeId: detailListResult.result.place_id,
                 address: detailListResult.result.formatted_address,
-                phone: detailListResult.result.formatted_phone_number,
+                phone: phNum,
                 restaurantName: detailListResult.result.name,
-                priceLevel: detailListResult.result.price_level,
+                priceLevel: prLev,
                 rating: detailListResult.result.rating,
                 image: firstImageURL,
                 '/voters/name0': employeeName
               });
-
+              
         });
     });
 
