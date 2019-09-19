@@ -63,9 +63,10 @@
     displayRating = snapshot.val().rating;
     displayImage = snapshot.val().image;
 
-    voters = snapshot.val().voters
+    database.ref("/option/" + fireBaseID + "/voters").once("value", function(snapshot){
+      votes = snapshot.numChildren();
+    });
 
-    
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
     var eateryH = $("<h3>" + displayRestaurant + "</h3>");
@@ -73,7 +74,7 @@
     var priceCard = $("<p>Price: " + displayPriceLevel + "</p>");
     var ratingCard = $("<p>Rating: " + displayRating + "</p>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
-    var voteCount = $("<p id='voteDisplay'>Votes: " + voters + "</p>");
+    var voteCount = $("<p id='voteDisplay'>Votes: " + votes + "</p>");
 
     $(voteCount).attr("data-id", fireBaseID);
 
@@ -102,34 +103,19 @@ $("body").on("click", ".voteButton", function(){
     database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
       votes = snapshot.numChildren();
      
-    database.ref("/option/" + thisVote + "/voters/name" + votes).set(thisVoter);
-      votes - snapshot.numChildren();
-
-    $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + votes)
-    $(".voterName[data-id=" + thisVote + "]").val("");
+    database.ref("/option/" + thisVote + "/voters/name" + votes).set(thisVoter);      
     });
 
-  // //updates the visible vote count
-  //   database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
-  //     console.log(snapshot.numChildren())
-  //     var voters = snapshot.val();
-  //     $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + Object.keys(voters).length);
-  // });
-
-  
-
+    database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+      votes = snapshot.numChildren();
+      $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + votes)
+      $(".voterName[data-id=" + thisVote + "]").val("");
 });
 
+});
 
 function hideLoad() {
   $(".loader").css("display", "none");
   $(".overlay").css("display", "none");
 }
-
-
-
-
-
-
-
 
