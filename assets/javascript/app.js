@@ -143,7 +143,10 @@ $("body").on("click", ".voteButton", function(){
 
 });
 
-
+function hideLoad() {
+  $(".loader").css("display", "none");
+  $(".overlay").css("display", "none");
+}
 
 
 
