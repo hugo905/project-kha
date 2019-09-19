@@ -39,7 +39,7 @@
     e.preventDefault();
     
     eatery = $("#restaurantSuggestion").val().trim();
-    employeeName = $("#employeeName").val().trim(); 
+    employeeName = $("#employeeName").val().trim().toLowerCase(); 
 
     if (eatery == ""){
       $("#restaurantSuggestion").addClass("is-invalid")
@@ -111,7 +111,7 @@ $("body").on("click", ".voteButton", function(){
   
     var thisVote = $(this).attr("data-id");
    
-    var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim();
+    var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim().toLowerCase();
 
     if(thisVoter == ""){
       $(".voterName[data-id=" + thisVote + "]").addClass("is-invalid")
