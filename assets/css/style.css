@@ -75,6 +75,11 @@ h1 {
     letter-spacing: 2px;
 }
 
+#suggest2 {
+    background: #FFFFFF;
+    color: #4DC5FE;
+}
+
 .suggestVote button {
     background: #FFFFFF;
     color: #4DC5FE;
