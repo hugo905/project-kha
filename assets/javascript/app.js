@@ -30,6 +30,7 @@
 
   var voters;
   var votes;
+  var voterCheck;
   var thisVote;
   var noSpaces;
 
@@ -116,9 +117,21 @@ $("body").on("click", ".voteButton", function(){
       $(".voterName[data-id=" + thisVote + "]").addClass("is-invalid")
     
     }else{
+      database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+        votes = snapshot.numChildren();
+      
+        $.each(snapshot.val(), function (index, value){
+        var nameList = value;
+        voterCheck = nameList.includes(thisVoter)
+      })
+    });
 
-    database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
-      votes = snapshot.numChildren();
+    if (voterCheck){
+      $(".voterName[data-id=" + thisVote + "]").val("You've already voted")
+
+    }else{
+      database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+        votes = snapshot.numChildren();
      
     database.ref("/option/" + thisVote + "/voters/name" + votes).set(thisVoter);      
     });
@@ -130,6 +143,7 @@ $("body").on("click", ".voteButton", function(){
       $(".voterName[data-id=" + thisVote + "]").removeClass("is-invalid")
     });
   }
+}
 
 });
 

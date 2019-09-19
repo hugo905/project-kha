@@ -12,7 +12,6 @@ $("#suggest").on("click", function suggestClick() {
 });
 
 //SUGGEST > SUGGEST SUBMIT!
-//$("#suggestSubmit").on("click", 
 function suggestClick() {
     $(".suggestionForm").addClass("hide");
     $(".votingArea").removeClass("hide");

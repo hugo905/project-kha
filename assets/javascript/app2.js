@@ -37,7 +37,7 @@ function runAPI (eatery) {
                 priceLevel: detailListResult.result.price_level,
                 rating: detailListResult.result.rating,
                 image: firstImageURL,
-                '/voters/name': employeeName
+                '/voters/name0': employeeName
               });
 
         });
