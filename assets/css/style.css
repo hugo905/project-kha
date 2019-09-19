@@ -68,6 +68,17 @@ h1 {
     color: #4DC5FE; 
 } 
 
+.btn-lg {
+    background: #4DC5FE;
+    color: #FFFFFF; 
+    border: 0;   
+    letter-spacing: 2px;
+}
+
+#suggest2 {
+    background: #FFFFFF;
+    color: #4DC5FE;
+}
 
 .suggestVote button {
     background: #FFFFFF;
@@ -81,6 +92,13 @@ h1 {
 
 .suggestionForm {
     margin-top: -20px;
+}
+
+#suggestSubmit {
+    background: #FFFFFF;
+    color: #4DC5FE;
+    letter-spacing: 2px;
+    border: 0;
 }
 
 form,
