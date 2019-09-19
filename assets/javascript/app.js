@@ -79,11 +79,11 @@
     database.ref("/option/" + fireBaseID + "/voters").once("value", function(snapshot){
       votes = snapshot.numChildren();
     });
-
+    var lookupAddress = displayAddress.replace("/",",");
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
     var eateryH = $("<h3>" + displayRestaurant + "</h3>");
-    var addressCard = $("<p>Address: " + displayAddress + "</p>");
+    var addressCard = $("<a href='https://www.google.com/maps/place/"+ lookupAddress + "'target='_blank'>" + displayAddress + "</a>");
     var priceCard = $("<p>Price: " + displayPriceLevel + "</p>");
     var ratingCard = $("<p>Rating: " + displayRating + "</p>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
