@@ -26,13 +26,14 @@ function runAPI (eatery) {
 
             var phNum = detailListResult.result.formatted_phone_number
             var prLev = detailListResult.result.price_level
+            var plcID = detailListResult.result.place_id
             console.log(detailListResult);
 
             firebaseID = database.ref("/option/").push().key;
             
             if(phNum == null){
                 phNum = "NA"
-                console.log("worked")
+                
             }else{
                 phNum = detailListResult.result.formatted_phone_number
             }
@@ -56,6 +57,9 @@ function runAPI (eatery) {
                 image: firstImageURL,
                 '/voters/name0': employeeName
               });
+            
+              database.ref("/allPlaceIds/" + eatery).set(plcID);     
+        
               
         });
     });
