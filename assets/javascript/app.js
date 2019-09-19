@@ -32,6 +32,12 @@
 
   //on submit click
   $("#suggestSubmit").on("click", function(e){
+  
+    
+var loading = "<div class='loader'></div>"
+$(".container-fluid").prepend(loading);
+$(".container-fluid").addClass('overlay');
+
     e.preventDefault();
     eatery = $("#restaurantSuggestion").val().trim();
     employeeName = $("#employeeName").val().trim();    
@@ -57,51 +63,58 @@
 
   //display the options 
   database.ref("/option").on("child_added", function(snapshot){
+    fireBaseID = snapshot.key;
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
 
     optionID = snapshot.val().optionNo;
-    displayAddress = snapshot.val().placeId;
+    displayAddress = snapshot.val().address;
     displayPhone = snapshot.val().phone;
     displayRestaurant = snapshot.val().restaurantName;
     displayPriceLevel = snapshot.val().priceLevel;
     displayRating = snapshot.val().rating;
-
+    displayImage = snapshot.val().image;
 
 
     var firstVote = snapshot.val().votes;
 
 
     var newCard = $("<div>");
-    var eateryH = $("<h5>" + displayEatery + "</h5>");
+    var imageBanner = "<img src=" + displayImage + " >";
+    var eateryH = $("<h3>" + displayRestaurant + "</h3>");
+    var addressCard = $("<p>Address: " + displayAddress + "</p>");
+    var priceCard = $("<p>Price: " + displayPriceLevel + "</p>");
+    var ratingCard = $("<p>Rating: " + displayRating + "</p>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
     var voteCount = $("<p>Votes: " + firstVote + "</p>");
 
-    var noSpaces = displayEatery.replace(/\s/g, "");
-    noSpaces = noSpaces.replace("'","");
-    $(voteCount).addClass("voteCounter" + noSpaces)
+    // var noSpaces = displayEatery.replace(/\s/g, "");
+    // noSpaces = noSpaces.replace("'","");
+    // $(voteCount).addClass("voteCounter");
+
+    $(voteCount).attr("data-id", fireBaseID);
 
     var voteButton = $("<button type='button ' class='btn btn-primary btn-lg btn-block voteButton' id='suggest'>Vote Now!</button>")
     var voterName = $("<input type='text' class='form-control voterName' id='employeeName' placeholder='Employee Name'>");
 
-    $(voterName).addClass("voterName" + noSpaces)
+    $(voterName).attr("data-id", fireBaseID)
     
-    $(voteButton).attr("OptionID", displayEatery);
+    $(voteButton).attr("data-id", fireBaseID);
     
-    $(newCard).append(eateryH, suggesterP, voteCount, voterName, voteButton);
+    $(newCard).append(imageBanner, eateryH, suggesterP, addressCard, priceCard, ratingCard, voteCount, voterName, voteButton);
     
-    $(newCard).addClass("card");
+    $(newCard).addClass("card cardstyle");
 
     $(".card-columns").prepend(newCard);
-
+    hideLoad();
   });
 
   //voting function
 $("body").on("click", ".voteButton", function(){
   
-    var thisVote = $(this).attr("OptionID");
+    var thisVote = $(this).attr("data-id");
     var noSpaces = thisVote.replace(/\s/g, '');
-    noSpaces = noSpaces.replace("'","");
+    // noSpaces = noSpaces.replace("'","");
 
     thisVoter = $(".voterName" + noSpaces).val().trim();
       
@@ -130,7 +143,10 @@ $("body").on("click", ".voteButton", function(){
 
 });
 
-
+function hideLoad() {
+  $(".loader").css("display", "none");
+  $(".overlay").css("display", "none");
+}
 
 
 
