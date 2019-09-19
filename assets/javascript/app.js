@@ -29,6 +29,7 @@
   var image;
 
   var voters;
+  var votes;
   var thisVote;
   var noSpaces;
 
@@ -62,6 +63,9 @@
     displayRating = snapshot.val().rating;
     displayImage = snapshot.val().image;
 
+    voters = snapshot.val().voters
+
+    
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
     var eateryH = $("<h3>" + displayRestaurant + "</h3>");
@@ -94,18 +98,25 @@ $("body").on("click", ".voteButton", function(){
     var thisVote = $(this).attr("data-id");
    
     var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim();
+
+    database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+      votes = snapshot.numChildren();
      
-    database.ref("/option/" + thisVote + "/voters/").push({
-      name: thisVoter
+    database.ref("/option/" + thisVote + "/voters/name" + votes).set(thisVoter);
+      votes - snapshot.numChildren();
+
+    $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + votes)
+    $(".voterName[data-id=" + thisVote + "]").val("");
     });
 
-  //updates the visible vote count
-    database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
-      var voters = snapshot.val();
-      $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + Object.keys(voters).length);
-  });
+  // //updates the visible vote count
+  //   database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
+  //     console.log(snapshot.numChildren())
+  //     var voters = snapshot.val();
+  //     $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + Object.keys(voters).length);
+  // });
 
-  $(".voterName[data-id=" + thisVote + "]").val("");
+  
 
 });
 
