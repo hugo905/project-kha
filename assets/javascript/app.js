@@ -100,6 +100,11 @@ $("body").on("click", ".voteButton", function(){
    
     var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim();
 
+    if(thisVoter == ""){
+      $(".voterName[data-id=" + thisVote + "]").addClass("is-invalid")
+    
+    }else{
+
     database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
       votes = snapshot.numChildren();
      
@@ -110,7 +115,9 @@ $("body").on("click", ".voteButton", function(){
       votes = snapshot.numChildren();
       $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + votes)
       $(".voterName[data-id=" + thisVote + "]").val("");
-});
+      $(".voterName[data-id=" + thisVote + "]").removeClass("is-invalid")
+    });
+  }
 
 });
 
