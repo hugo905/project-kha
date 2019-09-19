@@ -79,7 +79,7 @@
     database.ref("/option/" + fireBaseID + "/voters").once("value", function(snapshot){
       votes = snapshot.numChildren();
     });
-    console.log(displayEatery, displayAddress)
+    
     var lookupAddress = displayAddress.replace("/",",");
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
@@ -105,6 +105,7 @@
 
     $(".card-columns").prepend(newCard);
     hideLoad();
+    
   });
 
   //voting function
@@ -153,7 +154,7 @@ $("body").on("click", ".voteButton", function(){
 });
 
 function hideLoad() {
-  $(".loader").css("display", "none");
-  $(".overlay").css("display", "none");
+  $(".loader").remove();
+  $(".container-fluid").removeClass("overlay")
 }
 
