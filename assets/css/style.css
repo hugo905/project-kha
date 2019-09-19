@@ -20,39 +20,64 @@ body {
     background-position: center top;
     background-size: 100%;
     background-color: #6FD6FF;
+    color: #485975;
 }
 
 .navText {
     color: #FFFFFF;
     font-weight: bold;
     font-family: "quick";
-    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-top: 10px;
     text-align: center;
     margin: 0 auto;
 }
 
 h1 {
     font-family: "governor";
-    font-size: 44px;
+    font-size: 54px;
     letter-spacing: 2px;
     color: #FFFFFF;
-    margin: 0 auto;
-}
-
-.navbar { 
-    background: transparent;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    margin: 50px 0px 20px 0px;
+    word-break: break-all;
 }
 
 .card,
 #employeeName, 
 #restaurantSuggestion {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
 }
 
+#employeeName, 
+#restaurantSuggestion,
+#suggestSubmit {
+    margin-bottom: 30px;
+}
+
+
+#suggest2,
+#suggestSubmit {
+    width: 100%
+}
+
+#suggest2 {
+    margin-bottom: 20px;
+}
+
+::placeholder { 
+    color: #6FD6FF; 
+} 
+
 .btn-lg {
-    font-family: 'Rubik Mono One', sans-serif;
-    background: #273854;
-    width 100%;
+    width: 30%;
+    border: 0;
+    background: #FFFFFF;
+    color: #6FD6FF;
+    letter-spacing: 2px;
 }
 
 #suggest,
@@ -60,24 +85,35 @@ h1 {
     background: #FFFFFF;
     color: #6FD6FF;
     letter-spacing: 2px;
+    margin-top: -20px;
 }
 
-#suggest {
-    margin-left: 20px;
-}
-
-#voteNow {
-    margin-right: 20px;
+.suggestionForm {
+    margin-top: -20px;
 }
 
 form,
 .marginPlz {
-    margin-top: 10%;
+    margin-top: 8%;
+}
+
+input.form-control::placeholder {
+    color: #6FD6FF;
 }
 
 .hide {
     display: none;
 }
+
+
+#suggest,
+#voteNow,
+#employeeName,
+#restaurantSuggestion,
+#suggestSubmit {
+    margin-bottom: 30px;
+}
+
 
 .cardstyle {
     margin: 20px;
@@ -129,31 +165,29 @@ img {
     100% { transform: rotate(360deg); }
   }
 
+
 /* MOBILE  */
-@media (min-width: 480px) {
+@media only screen and (max-width: 480px) {
       
-    /*.navbar-text {
-        display: none;
-    }*/
-    
     h1 {
         text-align: center;
         margin: 30px;
+        font-size: 44px;
     }
 
-    #suggest,
-    #voteNow,
-    #employeeName,
-    #restaurantSuggestion,
-    #suggestSubmit {
-        margin-bottom: 30px;
-    }
 
     body {
-    margin: 10px;
+        background-image: url("../images/picture4.jpg");
+    }
 
-}
+    .hello {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
+    .btn-lg {
+        width: 100%;
+    }
 
 }
 

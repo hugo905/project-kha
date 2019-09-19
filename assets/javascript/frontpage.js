@@ -12,10 +12,10 @@ $("#suggest").on("click", function suggestClick() {
 });
 
 //SUGGEST > SUGGEST SUBMIT!
-$("#suggestSubmit").on("click", function suggestClick() {
+function suggestClick() {
     $(".suggestionForm").addClass("hide");
     $(".votingArea").removeClass("hide");
-});
+};
 
 //VOTE NOW!
 $("#voteNow").on("click", function voteClick() {
@@ -24,7 +24,7 @@ $("#voteNow").on("click", function voteClick() {
 });
 
 //VOTE NOW > DONT LIKE? SUGGEST!
-$("#suggestionResults").on("click", function frontPage() {
+$("#suggest2").on("click", function frontPage() {
     $(".suggestVote").addClass("hide");
     $(".votingArea").addClass("hide");
     $(".suggestionForm").removeClass("hide");
