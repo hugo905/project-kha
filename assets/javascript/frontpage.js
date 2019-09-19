@@ -24,7 +24,9 @@ $("#voteNow").on("click", function voteClick() {
 });
 
 //VOTE NOW > DONT LIKE? SUGGEST!
-$("#suggestionResults").on("click", function frontPage() {
+
+$("#suggest2").on("click", function frontPage() {
+
     $(".suggestVote").addClass("hide");
     $(".votingArea").addClass("hide");
     $(".suggestionForm").removeClass("hide");
