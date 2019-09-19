@@ -101,9 +101,9 @@ $(".container-fluid").addClass('overlay');
     
     $(voteButton).attr("OptionID", displayEatery);
     
-    $(newCard).append(eateryH, suggesterP, voteCount, voterName, voteButton);
+    $(newCard).append(imageBanner, eateryH, suggesterP, addressCard, priceCard, ratingCard, voteCount, voterName, voteButton);
     
-    $(newCard).addClass("card");
+    $(newCard).addClass("card cardstyle");
 
     $(".card-columns").prepend(newCard);
 
