@@ -63,17 +63,15 @@ $(".container-fluid").addClass('overlay');
 
   //display the options 
   database.ref("/option").on("child_added", function(snapshot){
-    fireBaseID = snapshot.key;
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
 
     optionID = snapshot.val().optionNo;
-    displayAddress = snapshot.val().address;
+    displayAddress = snapshot.val().placeId;
     displayPhone = snapshot.val().phone;
     displayRestaurant = snapshot.val().restaurantName;
     displayPriceLevel = snapshot.val().priceLevel;
     displayRating = snapshot.val().rating;
-    displayImage = snapshot.val().image;
 
 
     var firstVote = snapshot.val().votes;
@@ -92,29 +90,31 @@ $(".container-fluid").addClass('overlay');
     // noSpaces = noSpaces.replace("'","");
     // $(voteCount).addClass("voteCounter");
 
-    $(voteCount).attr("data-id", fireBaseID);
+    var noSpaces = displayEatery.replace(/\s/g, "");
+    noSpaces = noSpaces.replace("'","");
+    $(voteCount).addClass("voteCounter" + noSpaces)
 
     var voteButton = $("<button type='button ' class='btn btn-primary btn-lg btn-block voteButton' id='suggest'>Vote Now!</button>")
     var voterName = $("<input type='text' class='form-control voterName' id='employeeName' placeholder='Employee Name'>");
 
-    $(voterName).attr("data-id", fireBaseID)
+    $(voterName).addClass("voterName" + noSpaces)
     
-    $(voteButton).attr("data-id", fireBaseID);
+    $(voteButton).attr("OptionID", displayEatery);
     
-    $(newCard).append(imageBanner, eateryH, suggesterP, addressCard, priceCard, ratingCard, voteCount, voterName, voteButton);
+    $(newCard).append(eateryH, suggesterP, voteCount, voterName, voteButton);
     
-    $(newCard).addClass("card cardstyle");
+    $(newCard).addClass("card");
 
     $(".card-columns").prepend(newCard);
-    hideLoad();
+
   });
 
   //voting function
 $("body").on("click", ".voteButton", function(){
   
-    var thisVote = $(this).attr("data-id");
+    var thisVote = $(this).attr("OptionID");
     var noSpaces = thisVote.replace(/\s/g, '');
-    // noSpaces = noSpaces.replace("'","");
+    noSpaces = noSpaces.replace("'","");
 
     thisVoter = $(".voterName" + noSpaces).val().trim();
       
@@ -143,10 +143,14 @@ $("body").on("click", ".voteButton", function(){
 
 });
 
-function hideLoad() {
-  $(".loader").css("display", "none");
-  $(".overlay").css("display", "none");
-}
+
+
+
+
+
+
+
+
 
 
 
