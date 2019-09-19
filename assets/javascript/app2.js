@@ -27,7 +27,7 @@ function runAPI (eatery) {
             var phNum = detailListResult.result.formatted_phone_number
             var prLev = detailListResult.result.price_level
             var plcID = detailListResult.result.place_id
-            console.log(detailListResult);
+            
 
             firebaseID = database.ref("/option/").push().key;
             
