@@ -64,17 +64,15 @@
 
   //display the options 
   database.ref("/option").on("child_added", function(snapshot){
-    fireBaseID = snapshot.key;
     displayEatery = snapshot.val().eatery;
     displayEmployee = snapshot.val().suggester;
 
     optionID = snapshot.val().optionNo;
-    displayAddress = snapshot.val().address;
+    displayAddress = snapshot.val().placeId;
     displayPhone = snapshot.val().phone;
     displayRestaurant = snapshot.val().restaurantName;
     displayPriceLevel = snapshot.val().priceLevel;
     displayRating = snapshot.val().rating;
-    displayImage = snapshot.val().image;
 
     database.ref("/option/" + fireBaseID + "/voters").once("value", function(snapshot){
       votes = snapshot.numChildren();
@@ -90,29 +88,34 @@
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
     var voteCount = $("<p id='voteDisplay'>Votes: " + votes + "</p>");
 
-    $(voteCount).attr("data-id", fireBaseID);
+    var noSpaces = displayEatery.replace(/\s/g, "");
+    noSpaces = noSpaces.replace("'","");
+    $(voteCount).addClass("voteCounter" + noSpaces)
 
     var voteButton = $("<button type='button ' class='btn btn-primary btn-lg btn-block voteButton' id='suggest'>Vote Now!</button>")
     var voterName = $("<input type='text' class='form-control voterName' id='employeeName' placeholder='Employee Name'>");
 
-    $(voterName).attr("data-id", fireBaseID)
+    $(voterName).addClass("voterName" + noSpaces)
     
-    $(voteButton).attr("data-id", fireBaseID);
+    $(voteButton).attr("OptionID", displayEatery);
     
-    $(newCard).append(imageBanner, eateryH, suggesterP, addressCard, priceCard, ratingCard, voteCount, voterName, voteButton);
+    $(newCard).append(eateryH, suggesterP, voteCount, voterName, voteButton);
     
-    $(newCard).addClass("card cardstyle");
+    $(newCard).addClass("card");
 
     $(".card-columns").prepend(newCard);
-    hideLoad();
+
   });
 
   //voting function
 $("body").on("click", ".voteButton", function(){
   
+
+
     var thisVote = $(this).attr("data-id");
    
     var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim().toLowerCase();
+
 
     if(thisVoter == ""){
       $(".voterName[data-id=" + thisVote + "]").addClass("is-invalid")
@@ -157,4 +160,3 @@ function hideLoad() {
   $(".loader").css("display", "none");
   $(".overlay").css("display", "none");
 }
-
