@@ -12,10 +12,10 @@ $("#suggest").on("click", function suggestClick() {
 });
 
 //SUGGEST > SUGGEST SUBMIT!
-$("#suggestSubmit").on("click", function suggestClick() {
+function suggestClick() {
     $(".suggestionForm").addClass("hide");
     $(".votingArea").removeClass("hide");
-});
+};
 
 //VOTE NOW!
 $("#voteNow").on("click", function voteClick() {
