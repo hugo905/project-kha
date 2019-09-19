@@ -1,42 +1,190 @@
+@font-face {
+    font-family: "governor";
+    src: url('../images/governor.ttf');
+    }
+
+@font-face {
+    font-family: "moon";
+    src: url('../images/moon.otf');
+}
+
+
 body {
-    font-family: 'Yantramanav', sans-serif;
+    font-family: "moon";
     background-image: url("../images/picture3.jpg");
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100%;
+    background-color: #4DC5FE;
+    color: #485975;
 }
 
-.navbar-text {
+.navText {
+    color: #FFFFFF;
     font-weight: bold;
-    color: #273854;
-    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-top: 2%;
     text-align: center;
+    margin: 0 auto;
+    letter-spacing: 2px;
 }
 
 h1 {
-    font-family: 'Rubik Mono One', sans-serif;
-    font-size: 44px;
-    padding-left: 20px;
-    color: #273854;
+    font-family: "governor";
+    font-size: 54px;
+    letter-spacing: 3px;
+    color: #FFFFFF;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 2%;
+    margin: 50px 0px 20px 0px;
+    word-break: break-all;
 }
 
-.navigation { 
-    background: transparent;
+.card,
+#employeeName, 
+#restaurantSuggestion {
+    background: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
 }
 
-.employeeName, 
-.restaurantSuggestion {
-    width: 450px;
-    background: rgba(0,0,0,.8);
+#employeeName, 
+#restaurantSuggestion,
+#suggestSubmit {
+    margin-bottom: 30px;
 }
 
-.btn {
-    font-family: 'Rubik Mono One', sans-serif;
-    background: #273854;
-    width 100%;
+
+#suggest2,
+#suggestSubmit {
+    width: 100%
+}
+
+#suggest2 {
+    margin-bottom: 20px;
+}
+
+::placeholder { 
+    color: #4DC5FE; 
+} 
+
+
+.suggestVote button {
+    background: #FFFFFF;
+    color: #4DC5FE;
+    letter-spacing: 2px;
+    margin-top: -40px;
+    margin-bottom: 20px;
+    width: 30%;
+    border: 0;
+}
+
+.suggestionForm {
+    margin-top: -20px;
 }
 
 form,
 .marginPlz {
-    padding: 150px 0px 150px 0px;
+    margin-top: 8%;
+}
+
+input.form-control::placeholder {
+    color: #4DC5FE;
+}
+
+.hide {
+    display: none;
+}
+
+
+#suggest,
+#voteNow,
+#employeeName,
+#restaurantSuggestion,
+#suggestSubmit {
+    margin-bottom: 30px;
+}
+
+
+.cardstyle {
+    margin: 20px;
+    max-width: 350px;
+    padding: 20px;
+}
+
+img {
+    width:100%;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-right: 16px solid green;
+    border-bottom: 16px solid red;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 2;
+  }
+  
+  .overlay {
+    position: fixed; /* Sit on top of the page content */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+
+/* MOBILE  */
+@media only screen and (max-width: 480px) {
+      
+    h1 {
+        text-align: center;
+        margin: 30px;
+        font-size: 44px;
+    }
+
+
+    body {
+        background-image: url("../images/picture4.jpg");
+    }
+
+    .hello {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .btn-lg {
+        width: 100%;
+    }
+
+    #suggest {
+        margin-top: 10px;
+    }
+
+    #voteNow {
+
+    }
 }
