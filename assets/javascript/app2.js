@@ -25,22 +25,21 @@ function runAPI (eatery) {
             var firstImageURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
             console.log(detailListResult);
 
-            
-            database.ref("/option").push({
+            firebaseID = database.ref("/option/").push().key;
+
+            database.ref("/option/" + firebaseID).update({
                 eatery: eatery,
                 suggester: employeeName,
-                // optionNumber: 
-                // displayEatery:
-                // displayEmployee: 
-
                 placeId: detailListResult.result.place_id,
                 address: detailListResult.result.formatted_address,
                 phone: detailListResult.result.formatted_phone_number,
                 restaurantName: detailListResult.result.name,
                 priceLevel: detailListResult.result.price_level,
                 rating: detailListResult.result.rating,
-                image: firstImageURL
+                image: firstImageURL,
+                '/voters/name': employeeName
               });
+
         });
     });
 

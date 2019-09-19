@@ -62,10 +62,6 @@
     displayRating = snapshot.val().rating;
     displayImage = snapshot.val().image;
 
-    // database.ref("/option/" + fireBaseID).push({
-    //   name: employeeName
-    // });
-
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
     var eateryH = $("<h3>" + displayRestaurant + "</h3>");
@@ -96,29 +92,23 @@
 $("body").on("click", ".voteButton", function(){
   
     var thisVote = $(this).attr("data-id");
-    console.log(thisVote);
-    //var noSpaces = thisVote.replace(/\s/g, '');
-    // noSpaces = noSpaces.replace("'","");
-
+   
     var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim();
-      console.log(thisVoter);
-      database.ref("/option/" + thisVote + "/voters/").push({
-        name: thisVoter
-      });
-
-
+     
+    database.ref("/option/" + thisVote + "/voters/").push({
+      name: thisVoter
+    });
 
   //updates the visible vote count
-  database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
-    var voters = snapshot.val();
-    $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + Object.keys(voters).length);
-    
-    console.log(voters.length)
+    database.ref("/option/" + thisVote + "/voters").on("value", function(snapshot){
+      var voters = snapshot.val();
+      $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + Object.keys(voters).length);
   });
 
-$(".voterName[data-id=" + thisVote + "]").val("");
+  $(".voterName[data-id=" + thisVote + "]").val("");
 
 });
+
 
 function hideLoad() {
   $(".loader").css("display", "none");
