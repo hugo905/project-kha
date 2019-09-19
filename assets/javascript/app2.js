@@ -23,6 +23,7 @@ function runAPI (eatery) {
 
             var firstImageReference = detailListResult.result.photos[0].photo_reference;
             var firstImageURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + firstImageReference + "&key=AIzaSyATo66aR1XW_0vPRGB6CjsrCBDjaYi9ZUM";
+
             var phNum = detailListResult.result.formatted_phone_number
             var prLev = detailListResult.result.price_level
             console.log(detailListResult);
