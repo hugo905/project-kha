@@ -1,5 +1,3 @@
-
-
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyAO_Gz79glGQcOnEg5cs4vi4sN3VQ5dYvM",
@@ -30,35 +28,38 @@
   var rating;
   var image;
 
+  var voters;
+  var votes;
+  var voterCheck;
+  var thisVote;
+  var noSpaces;
+
   //on submit click
-  $("#suggestSubmit").on("click", function(e){
-  
-    
-var loading = "<div class='loader'></div>"
-$(".container-fluid").prepend(loading);
-$(".container-fluid").addClass('overlay');
-
+  $("#suggestSubmit").on("click", function(e){  
     e.preventDefault();
+    
     eatery = $("#restaurantSuggestion").val().trim();
-    employeeName = $("#employeeName").val().trim();    
-    runAPI(eatery);
+    employeeName = $("#employeeName").val().trim().toLowerCase(); 
 
-    //saving options up to database 
+    if (eatery == ""){
+      $("#restaurantSuggestion").addClass("is-invalid")
+    }else if (employeeName == ""){
+      $("#employeeName").addClass("is-invalid")
+    }else{
+    
+      var loading = "<div class='loader'></div>"
+      $(".container-fluid").prepend(loading);
+      $(".container-fluid").addClass('overlay');
+        
+      runAPI(eatery);
 
-      database.ref("/option/" + eatery).set({
-        eatery: eatery,
-        suggester: employeeName,
-        votes: 1
-      });
+        $("#restaurantSuggestion").val("");
+        $("#employeeName").val("");
+        $("#restaurantSuggestion").removeClass("is-invalid");
+        $("#employeeName").removeClass("is-invalid");
 
-
-      database.ref("/option/" + eatery + "/voterName/" + employeeName).set({
-        votes: 1
-      });
-
-      $("#restaurantSuggestion").val("");
-      $("#employeeName").val("");
-
+        suggestClick();
+  }
   });
 
   //display the options 
@@ -75,22 +76,19 @@ $(".container-fluid").addClass('overlay');
     displayRating = snapshot.val().rating;
     displayImage = snapshot.val().image;
 
-
-    var firstVote = snapshot.val().votes;
-
-
+    database.ref("/option/" + fireBaseID + "/voters").once("value", function(snapshot){
+      votes = snapshot.numChildren();
+    });
+    
+    var lookupAddress = displayAddress.replace("/",",");
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
     var eateryH = $("<h3>" + displayRestaurant + "</h3>");
-    var addressCard = $("<p>Address: " + displayAddress + "</p>");
+    var addressCard = $("<a href='https://www.google.com/maps/place/"+ lookupAddress + "'target='_blank'>" + displayAddress + "</a>");
     var priceCard = $("<p>Price: " + displayPriceLevel + "</p>");
     var ratingCard = $("<p>Rating: " + displayRating + "</p>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
-    var voteCount = $("<p>Votes: " + firstVote + "</p>");
-
-    // var noSpaces = displayEatery.replace(/\s/g, "");
-    // noSpaces = noSpaces.replace("'","");
-    // $(voteCount).addClass("voteCounter");
+    var voteCount = $("<p id='voteDisplay'>Votes: " + votes + "</p>");
 
     $(voteCount).attr("data-id", fireBaseID);
 
@@ -113,33 +111,40 @@ $(".container-fluid").addClass('overlay');
 $("body").on("click", ".voteButton", function(){
   
     var thisVote = $(this).attr("data-id");
-    var noSpaces = thisVote.replace(/\s/g, '');
-    // noSpaces = noSpaces.replace("'","");
+   
+    var thisVoter = $(".voterName[data-id=" + thisVote + "]").val().trim().toLowerCase();
 
-    thisVoter = $(".voterName" + noSpaces).val().trim();
+    if(thisVoter == ""){
+      $(".voterName[data-id=" + thisVote + "]").addClass("is-invalid")
+    
+    }else{
+      database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+        votes = snapshot.numChildren();
       
-      database.ref("/option/" + thisVote + "/voterName/" + thisVoter).set({
-        votes: 1
-      });
-      
-  
-
-    //adds to vote count on the database
-    var thisDB = database.ref("/option/" + thisVote + "/votes")
-    thisDB.transaction(function(votes){
-      return votes +1;
+        $.each(snapshot.val(), function (index, value){
+        var nameList = value;
+        voterCheck = nameList.includes(thisVoter)
+      })
     });
 
-  //updates the visible vote count
-  database.ref("/option/" + thisVote + "/votes").on("value", function(snapshot){
-    var voteCount = snapshot.val();
-    
-    $(".voteCounter" + noSpaces).text("Votes: " + voteCount);
-    
-  });
+    if (voterCheck){
+      $(".voterName[data-id=" + thisVote + "]").val("You've already voted")
 
+    }else{
+      database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+        votes = snapshot.numChildren();
+     
+    database.ref("/option/" + thisVote + "/voters/name" + votes).set(thisVoter);      
+    });
 
-  $(".voterName" + noSpaces).val("");
+    database.ref("/option/" + thisVote + "/voters").once("value", function(snapshot){
+      votes = snapshot.numChildren();
+      $("#voteDisplay[data-id=" + thisVote + "]").text("Votes: " + votes)
+      $(".voterName[data-id=" + thisVote + "]").val("");
+      $(".voterName[data-id=" + thisVote + "]").removeClass("is-invalid")
+    });
+  }
+}
 
 });
 
@@ -147,11 +152,4 @@ function hideLoad() {
   $(".loader").css("display", "none");
   $(".overlay").css("display", "none");
 }
-
-
-
-
-
-
-
 
