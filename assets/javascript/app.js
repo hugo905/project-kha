@@ -82,12 +82,28 @@
       votes = snapshot.numChildren();
     });
     
+    var priceCard = $("<p>Price: </p>");
+    var dollar;
+
+    if(displayPriceLevel == "NA"){
+      $(priceCard).html("<p> Price: Not available</p>")
+
+    }else{
+      displayPriceLevel = parseInt(displayPriceLevel)
+    
+
+      for(var i = 0; i < displayPriceLevel; i++){
+        dollar = $("<i class='cui-dollar'></i>")
+        $(dollar).attr("icon",i);
+        $(priceCard).append(dollar)
+      }
+    }
+
     var lookupAddress = displayAddress.replace("/",",");
     var newCard = $("<div>");
     var imageBanner = "<img src=" + displayImage + " >";
     var eateryH = $("<h3>" + displayRestaurant + "</h3>");
     var addressCard = $("<a href='https://www.google.com/maps/place/"+ lookupAddress + "'target='_blank'>" + displayAddress + "</a>");
-    var priceCard = $("<p>Price: " + displayPriceLevel + "</p>");
     var ratingCard = $("<p>Rating: " + displayRating + "</p>");
     var suggesterP = $("<p>Suggested by: " + displayEmployee + "</p>");
     var voteCount = $("<p id='voteDisplay'>Votes: " + votes + "</p>");
