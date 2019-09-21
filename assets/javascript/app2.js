@@ -50,12 +50,12 @@ function runAPI (eatery) {
                 $.each(snapshot.val(), function (index, value){
                     var plcIDsList = value;
                     IDCheck = plcIDsList.includes(plcID);
-                    console.log(IDCheck)
+                    
                     if (IDCheck)
                         return false;
                 })
           
-            console.log(IDCheck)
+            
             if (IDCheck){
                 hideLoad();
                 $(".suggestVote").removeClass("hide");
