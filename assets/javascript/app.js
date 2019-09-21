@@ -33,8 +33,6 @@
   var voterCheck;
   var thisVote;
   var noSpaces;
-  var numPlcID;
-  
 
   //on submit click
   $("#suggestSubmit").on("click", function(e){  

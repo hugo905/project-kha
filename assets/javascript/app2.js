@@ -27,7 +27,7 @@ function runAPI (eatery) {
             var phNum = detailListResult.result.formatted_phone_number
             var prLev = detailListResult.result.price_level
             var plcID = detailListResult.result.place_id
-            var IDCheck;
+            
 
             firebaseID = database.ref("/option/").push().key;
             
@@ -44,26 +44,6 @@ function runAPI (eatery) {
                 prLev = detailListResult.result.price_level
             }
            
-            database.ref("/allPlaceIds/").once("value", function(snapshot){
-                numPlcID = snapshot.numChildren();
-
-                $.each(snapshot.val(), function (index, value){
-                    var plcIDsList = value;
-                    IDCheck = plcIDsList.includes(plcID);
-                    console.log(IDCheck)
-                    if (IDCheck)
-                        return false;
-                })
-          
-            console.log(IDCheck)
-            if (IDCheck){
-                hideLoad();
-                $(".suggestVote").removeClass("hide");
-                $(".votingArea").addClass("hide");
-                $(".suggestionForm").addClass("hide");
-                var note = $("<p id='alreadySuggested'>That one is already suggested! Select Vote Now to vote for that option.</p>")
-                $(".navText").append(note);
-            }else{
             
             database.ref("/option/" + firebaseID).update({
                 eatery: eatery,
@@ -80,9 +60,7 @@ function runAPI (eatery) {
             
               database.ref("/allPlaceIds/" + eatery).set(plcID);     
         
-            }
-            });
-
+              
         });
     });
 
